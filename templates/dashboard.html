@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+<head>
+    <link rel="stylesheet" href="/static/dashboard.css">
+    <title>Dashboard</title>
+</head>
+<body>
+    <header>
+        <h2>Dashboard</h2>
+    </header>
+    <div class="container">
+        <h3>Welcome, {{ username|e }}</h3>
+        
+        {% if error_message %}
+            <p class="error">{{ error_message|e }}</p>
+        {% endif %}
+        
+        <form method="POST" action="/add_note">
+            <textarea name="content" placeholder="Enter your note here" required></textarea><br>
+            <button type="submit">Add Note</button>
+        </form>
+
+        <h3>Your Notes:</h3>
+        <ul>
+            {% for note in notes %}
+                <li>{{ note.content|e }}</li>
+            {% endfor %}
+        </ul>
+
+        <form method="POST" action="/logout" style="display:inline;">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+</body>
+</html></form>

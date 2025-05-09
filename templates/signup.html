@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+<head>
+    <link rel="stylesheet" href="/static/signup.css">
+    <title>Signup</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="container">
+        <h2>Signup</h2>
+        <!-- Error message section -->
+        <div class="error" id="error-message" style="display: none;">Error message goes here</div>
+        <form method="POST" action="/signup" onsubmit="return validateForm()">
+            <input type="text" name="username" id="username" placeholder="Username" required><br>
+            <input type="password" name="password" id="password" placeholder="Password" required><br>
+            <button type="submit">Signup</button>
+        </form>
+        <a href="/login">Already have an account? Login</a>
+    </div>
+
+    <script>
+        function validateForm() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const errorMessage = document.getElementById('error-message');
+
+            if (username === '' || password === '') {
+                errorMessage.textContent = 'All fields are required.';
+                errorMessage.style.display = 'block';
+                return false;
+            }
+
+            if (password.length < 6) {
+                errorMessage.textContent = 'Password must be at least 6 characters long.';
+                errorMessage.style.display = 'block';
+                return false;
+            }
+
+            errorMessage.style.display = 'none';
+            return true;
+        }
+    </script>
+</body>
+</html>
